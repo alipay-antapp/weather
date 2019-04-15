@@ -1,0 +1,35 @@
+
+@import '/style/common.acss';
+
+.hourly-contain {
+  position: relative;
+  width: 100%;
+}
+
+.hourly-header {
+  width: 100%;
+  padding: 28rpx 0;
+  text-align: center;
+}
+
+
+.hourly-body {
+  width: 100%;
+  padding: 40rpx 20rpx;
+  background: #fff;
+}
+
+.ifestyle-cell {
+  min-height: 20rpx;
+  padding: 20rpx;
+}
+
+.leftstyle-content {
+  width: 100%;
+  padding-top: 20rpx;
+  font-size: 22rpx;
+  line-height: 28rpx;
+  color: 606266;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

@@ -1,0 +1,109 @@
+<view class="weather-contain">
+  <view class="weather-content border-box">
+    <view class="weather-header">
+      <view class="weather-header-flex border-box flex flex-row flex-align-center flex-vertical-center ">
+        <view class="weather-header-left flex-1 color-1890ff flex flex-vertical-center">
+          <!-- onTap="toSelectCity" -->
+          <image mode="widthFix" src="../../images/map.png"></image>
+          <text>{{nowLocal.locationName}}</text>
+        </view>
+        <view class="weather-header-update_tim font-20 ">最近更新时间：{{nowLocal.update.loc}}</view>
+        <view class="weather-header-right flex-1 flex flex-row flex-vertical-center flex-align-end">
+          <text class="cond_txt p-r-20 color-1890ff">{{nowLocal.now.tmp}}℃ </text>
+          <text class="cond_txt">{{nowLocal.now.cond_txt}}</text>
+          <image mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+nowLocal.now.cond_code+'.png'}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="weather-body">
+      <view class="weather-body-cell border-box">
+        <view class="flex flex-wrap">
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">体感温度</text>
+            <text class="color-1890ff">{{nowLocal.now.fl}}℃</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">{{nowLocal.now.wind_dir}}</text>
+            <text class="color-1890ff">{{nowLocal.now.wind_sc}}级</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">相对湿度</text>
+            <text class="color-1890ff">{{nowLocal.now.hum}}%</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">降水量</text>
+            <text class="color-1890ff">{{nowLocal.now.pcpn}}mm</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">大气压强</text>
+            <text class="color-1890ff">{{nowLocal.now.pres}}mb</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">能见度</text>
+            <text class="color-1890ff">{{nowLocal.now.vis}}公里</text>
+          </view>
+          <view class="flex flex-column now-item border-box">
+            <text class="now-item-title">云量</text>
+            <text class="color-1890ff">{{nowLocal.now.cloud}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="weather-body-cell border-box">
+        <block a:for="{{ nowLocal.hourly }}" >
+          <view class="ifestyle-cell flex flex-column border-bottom-1"
+            a:for-index="index" 
+            a:key="*this" 
+            a:if="{{index<3}}">
+            <view class="flex flex-align-between">
+              <text class="color-1890ff font-24">{{item.time}}</text>
+              <text class="font-20">{{item.wind_dir}} {{item.wind_sc}}级</text>
+              <text class="color-1890ff flex flex-vertical-center">
+                <text class="font-20 p-r-20">{{item.tmp}}℃</text>
+                <text class="font-20 p-r-8">{{item.cond_txt}}</text>
+                <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code+'.png'}}"></image>
+              </text>
+            </view>
+          </view>
+        </block>
+        <view class="ifestyle-cell flex flex-align-center font-28 color-1890ff" onTap="toMoreHourly">查看更多逐小时天气预报</view>
+      </view>
+      <view class="weather-body-cell border-box">
+        <block a:for="{{ nowLocal.daily_forecast }}" >
+          <view class="ifestyle-cell flex flex-column border-bottom-1"
+            a:for-index="index" 
+            a:key="*this" 
+            a:if="{{index<3}}">
+            <view class="flex flex-align-between">
+              <text class="color-1890ff font-24">{{item.date}}</text>
+              <text class="font-20">{{item.wind_dir}} {{item.wind_sc}}级</text>
+              <text class="color-1890ff flex flex-vertical-center">
+                <text class="font-20 p-r-20">{{item.tmp_min}}/{{item.tmp_max}}℃</text>
+                <text class="font-20 p-r-8">{{item.cond_txt_d}} ~ {{item.cond_txt_n}}</text>
+                <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code_d+'.png'}}"></image> ~
+                <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code_n+'.png'}}"></image>
+              </text>
+            </view>
+          </view>
+        </block>
+        <view class="ifestyle-cell flex flex-align-center font-28 color-1890ff" onTap="toMoreDaily">查看未来3-10天天气预报</view>
+      </view>
+      <view class="weather-body-cell border-box">
+        <block a:for="{{ nowLocal.lifestyle }}" >
+          <view class="ifestyle-cell flex flex-column border-bottom-1"
+            a:for-index="index" 
+            a:key="*this" 
+            a:if="{{index<3}}">
+            <view class="flex flex-align-between">
+              <text class="color-1890ff">{{lifeKeys[item.type]}}</text>
+              <text class="color-1890ff">{{item.brf}}</text>
+            </view>
+            <view class="leftstyle-content">{{item.txt}}</view>
+          </view>
+        </block>
+        <view class="ifestyle-cell flex flex-align-center font-28 color-1890ff" onTap="toMoreLifestyle">查看更多生活指数</view>
+      </view>
+    </view>
+  </view>
+  <!-- city -->
+  
+</view>

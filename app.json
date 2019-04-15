@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/weather/weather",
+    "pages/juejin/juejin",
+    "pages/juejin-detail/juejin-detail",
+    "pages/cnode/cnode",
+    "pages/node-detail/node-detail",
+    "pages/hourly/hourly",
+    "pages/daily/daily",
+    "pages/lifestyle/lifestyle"
+  ],
+  "window": {
+    "defaultTitle": "web 前端技术查询"
+  },
+  "tabBar": {
+    "textColor": "#dddddd",
+    "selectedColor": "#49a9ee",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/weather/weather",
+        "name": "天气查询",
+        "icon": "images/juejin.png",
+        "activeIcon": "images/juejin-active.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+<view class="hourly-contain">
+  <view class="hourly-content">
+    <view class="hourly-header font-28 color-1890ff text-center">逐小时预报</view>
+    <view class="hourly-body  border-box">
+      
+      <view class="ifestyle-cell flex flex-column border-bottom-1"
+       a:for="{{ hourlyData }}"
+        a:for-index="index" 
+        a:key="*this" >
+        <view class="flex flex-align-between">
+          <text class="color-1890ff font-24">{{item.time}}</text>
+          <text class="font-20">{{item.wind_dir}} {{item.wind_sc}}级</text>
+          <text class="color-1890ff flex flex-vertical-center">
+            <text class="font-20 p-r-20">{{item.tmp}}℃</text>
+            <text class="font-20 p-r-8">{{item.cond_txt}}</text>
+            <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code+'.png'}}"></image>
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

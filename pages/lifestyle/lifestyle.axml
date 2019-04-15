@@ -1,0 +1,18 @@
+<view class="hourly-contain">
+  <view class="hourly-content">
+    <view class="hourly-header font-28 color-1890ff text-center">更多生活指数</view>
+    <view class="hourly-body  border-box">
+      
+      <view class="ifestyle-cell flex flex-column border-bottom-1"
+       a:for="{{ lifeData }}"
+        a:for-index="index" 
+        a:key="*this" >
+        <view class="flex flex-align-between">
+          <text class="color-1890ff">{{lifeKeys[item.type]}}</text>
+          <text class="color-1890ff">{{item.brf}}</text>
+        </view>
+        <view class="leftstyle-content">{{item.txt}}</view>
+      </view>
+    </view>
+  </view>
+</view>

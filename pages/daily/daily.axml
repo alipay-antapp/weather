@@ -1,0 +1,23 @@
+<view class="hourly-contain">
+  <view class="hourly-content">
+    <view class="hourly-header font-28 color-1890ff text-center">3-10天预报</view>
+    <view class="hourly-body  border-box">
+      
+      <view class="ifestyle-cell flex flex-column border-bottom-1"
+       a:for="{{ dailyData }}"
+        a:for-index="index" 
+        a:key="*this" >
+        <view class="flex flex-align-between">
+          <text class="color-1890ff font-24">{{item.date}}</text>
+          <text class="font-20">{{item.wind_dir}} {{item.wind_sc}}级</text>
+          <text class="color-1890ff flex flex-vertical-center">
+            <text class="font-20 p-r-20">{{item.tmp_min}}/{{item.tmp_max}}℃</text>
+            <text class="font-20 p-r-8">{{item.cond_txt_d}} ~ {{item.cond_txt_n}}</text>
+            <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code_d+'.png'}}"></image> ~
+            <image style="width: 28rpx;" mode="widthFix" src="{{'https://cdn.heweather.com/cond_icon/'+item.cond_code_n+'.png'}}"></image>
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
