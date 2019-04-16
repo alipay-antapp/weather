@@ -2,7 +2,7 @@
   <view class="weather-content border-box">
     <view class="weather-header">
       <view class="weather-header-flex border-box flex flex-row flex-align-center flex-vertical-center ">
-        <view class="weather-header-left flex-1 color-1890ff flex flex-vertical-center">
+        <view class="weather-header-left flex-1 color-1890ff flex flex-vertical-center" onTap="toSelectCity">
           <!-- onTap="toSelectCity" -->
           <image mode="widthFix" src="../../images/map.png"></image>
           <text>{{nowLocal.locationName}}</text>
@@ -48,7 +48,7 @@
           </view>
         </view>
       </view>
-      <view class="weather-body-cell border-box">
+      <view class="weather-body-cell border-box" a:if="{{nowLocal.hourly.length}}">
         <block a:for="{{ nowLocal.hourly }}" >
           <view class="ifestyle-cell flex flex-column border-bottom-1"
             a:for-index="index" 
@@ -67,7 +67,7 @@
         </block>
         <view class="ifestyle-cell flex flex-align-center font-28 color-1890ff" onTap="toMoreHourly">查看更多逐小时天气预报</view>
       </view>
-      <view class="weather-body-cell border-box">
+      <view class="weather-body-cell border-box" a:if="{{nowLocal.daily_forecast.length}}">
         <block a:for="{{ nowLocal.daily_forecast }}" >
           <view class="ifestyle-cell flex flex-column border-bottom-1"
             a:for-index="index" 
@@ -87,7 +87,7 @@
         </block>
         <view class="ifestyle-cell flex flex-align-center font-28 color-1890ff" onTap="toMoreDaily">查看未来3-10天天气预报</view>
       </view>
-      <view class="weather-body-cell border-box">
+      <view class="weather-body-cell border-box" a:if="{{nowLocal.lifestyle.length}}">
         <block a:for="{{ nowLocal.lifestyle }}" >
           <view class="ifestyle-cell flex flex-column border-bottom-1"
             a:for-index="index" 

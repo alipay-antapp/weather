@@ -55,7 +55,8 @@ Page({
       },
       fail() {
         my.hideLoading();
-        my.alert({ title: '定位失败' });
+        my.alert({ title: '定位失败,默认显示杭州天气' });
+        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' });
       },
     })
   },
@@ -73,8 +74,7 @@ Page({
     let res = getWeather(baseUrl, '/find', param);
     res.then(result => {
       that.setData({
-        'nowLocal.locationName': result['HeWeather6'][0].basic[0].location,
-        
+        'nowLocal.locationName': result['HeWeather6'][0].basic[0].location
       })
     }).catch(()=>{
       that.setData({
@@ -86,11 +86,11 @@ Page({
   /**
    * 根据当前位置经纬度获取3-7天天气预报、实况天气、逐小时天气预报以及生活指数，
    */
-  getLastWeather(location) {
+  getLastWeather(location,name) {
     let that = this;
     let baseUrl = 'https://free-api.heweather.net';
     let param = {
-      location: location.longitude +','+location.latitude,
+      location: !!location? location.longitude +','+location.latitude : name,
       key: `HE${that.data.key}`
     }
     let res = getWeather(baseUrl, '/s6/weather', param);
@@ -116,7 +116,13 @@ Page({
    */
   toSelectCity() {
     let that = this;
-    that.getcity();
+    my.chooseCity({
+      showLocatedCity: true,
+      success: (res) => {
+        that.getLastWeather('',res.city);
+      },
+    });
+    // that.getcity();
   },
 
   /**
