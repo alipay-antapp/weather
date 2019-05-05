@@ -28,7 +28,7 @@ Page({
       lifestyle: []
     },
     location: '',
-    key: '1903021633341544',
+    key: 'd2501cb604437c8c063f0b5bc69e35',
 
     cityList: [],
     arrIndex: 0,
@@ -51,12 +51,18 @@ Page({
         })
         */
         // that.getLocationName(res);
-        that.getLastWeather(res);
+        that.getLastWeather(res, '', 'now');
+        that.getLastWeather(res, '', 'forecast');
+        that.getLastWeather(res, '', 'hourly');
+        that.getLastWeather(res, '', 'lifestyle');
       },
       fail() {
         my.hideLoading();
         my.alert({ title: '定位失败,默认显示杭州天气' });
         that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' });
+        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'forecast');
+        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'hourly');
+        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'lifestyle');
       },
     })
   },
@@ -69,7 +75,7 @@ Page({
     let baseUrl = 'https://search.heweather.net';
     let param = {
       location: location.longitude +','+location.latitude,
-      key: `HE${that.data.key}`
+      key: `4b${that.data.key}`
     }
     let res = getWeather(baseUrl, '/find', param);
     res.then(result => {
@@ -86,14 +92,14 @@ Page({
   /**
    * 根据当前位置经纬度获取3-7天天气预报、实况天气、逐小时天气预报以及生活指数，
    */
-  getLastWeather(location,name) {
+  getLastWeather(location,name,type) {
     let that = this;
     let baseUrl = 'https://free-api.heweather.net';
     let param = {
       location: !!location? location.longitude +','+location.latitude : name,
-      key: `HE${that.data.key}`
+      key: `4b${that.data.key}`
     }
-    let res = getWeather(baseUrl, '/s6/weather', param);
+    let res = getWeather(baseUrl, '/s6/weather/'+type, param);
     res.then(result => {
       that.setData({
         location: param.location,
@@ -119,7 +125,10 @@ Page({
     my.chooseCity({
       showLocatedCity: true,
       success: (res) => {
-        that.getLastWeather('',res.city);
+        that.getLastWeather('', res.city);
+        that.getLastWeather( '', res.city, 'forecast');
+        that.getLastWeather( '', res.city, 'hourly');
+        that.getLastWeather( '', res.city, 'lifestyle');
       },
     });
     // that.getcity();
@@ -134,7 +143,7 @@ Page({
     let param = {
       group: 'cn',
       number: 50,
-      key: `HE${that.data.key}`
+      key: `4b${that.data.key}`
     }
     let res = getWeather(baseUrl, '/top', param);
     res.then(result => {
@@ -161,7 +170,7 @@ Page({
   toMoreHourly() {
     let that = this;
     my.navigateTo({
-      url: `/pages/hourly/hourly?location=${that.data.location}&key=HE${that.data.key}`
+      url: `/pages/hourly/hourly?location=${that.data.location}&key=4b${that.data.key}`
     })
   },
   /**
@@ -170,7 +179,7 @@ Page({
   toMoreDaily() {
     let that = this;
     my.navigateTo({
-      url: `/pages/daily/daily?location=${that.data.location}&key=HE${that.data.key}`
+      url: `/pages/daily/daily?location=${that.data.location}&key=4b${that.data.key}`
     })
   },
   /**
@@ -179,7 +188,7 @@ Page({
   toMoreLifestyle() {
     let that = this;
     my.navigateTo({
-      url: `/pages/lifestyle/lifestyle?location=${that.data.location}&key=HE${that.data.key}`
+      url: `/pages/lifestyle/lifestyle?location=${that.data.location}&key=4b${that.data.key}`
     })
   },
 });

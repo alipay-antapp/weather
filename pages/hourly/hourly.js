@@ -4,7 +4,6 @@ Page({
     hourlyData: []
   },
   onLoad(query) {
-    console.log(query)
     this.getData(query);
   },
   getData(query) {
