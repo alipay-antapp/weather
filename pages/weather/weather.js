@@ -59,7 +59,7 @@ Page({
       fail() {
         my.hideLoading();
         my.alert({ title: '定位失败,默认显示杭州天气' });
-        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' });
+        that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'now');
         that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'forecast');
         that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'hourly');
         that.getLastWeather({ longitude: '120.124871', latitude: '30.276996' }, '', 'lifestyle');
@@ -125,7 +125,7 @@ Page({
     my.chooseCity({
       showLocatedCity: true,
       success: (res) => {
-        that.getLastWeather('', res.city);
+        that.getLastWeather('', res.city, 'now');
         that.getLastWeather( '', res.city, 'forecast');
         that.getLastWeather( '', res.city, 'hourly');
         that.getLastWeather( '', res.city, 'lifestyle');
